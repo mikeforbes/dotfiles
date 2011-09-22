@@ -22,7 +22,7 @@ set isk+=_,$,@,%,#,- " none of these should be word dividers, so make them not b
 set scrolloff=2 " Minimal number of screen lines to keep above and below the cursor. (2)
 set background=dark " we are using a dark background
 set t_Co=256 "number of terminal colours to use. (all of them)
-colorscheme jellybeans 
+colorscheme jellybeans " https://github.com/mikeforbes/dotfiles/blob/master/jellybeans.vim 
 set lsp=1 " space it out a little more (easier to read)
 set wildmenu " turn on wild menu
 set ruler " Always show current positions along the bottom 
