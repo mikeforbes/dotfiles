@@ -28,6 +28,9 @@ shopt -s no_empty_cmd_completion # do not search for possible completions when c
 shopt -s cmdhist # attempt to save all lines of a multiple-line command in the same history entry.
 shopt -s histappend histreedit histverify # various history things
 
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -47,11 +50,14 @@ export GIT_COMMITTER_EMAIL=my.email.address@domain.com
 export GPGKEY=000000
 
 # my prompt. simple & useful, with some colour. looks like: "user@hostname ~ $ "
-#export PS1='\[\033[01;32m\]\u\[\033[01;00m\]@\[\033[01;34m\]\h \[\033[37m\]\W $ \[\033[00m\]'
+# shows a git branch in the prompt, if the git binary exists..
 
-# my prompt. simple & useful, with some colour. looks like: "user@hostname ~ $" also tells you the git tree you're currently viewing
-# requires the git-completion plugin. disable this an enable the above if there are errors
-export PS1='\[\033[01;32m\]\u\[\033[02;00m\]@\[\033[01;34m\]\h \[\033[37m\]\W $(__git_ps1 "(%s)") $ \[\033[00m\]'
+if [ `which git` ]; then
+export PS1='\[\033[01;32m\]\u\[\033[01;00m\]@\[\033[01;31m\]\h \[\033[37m\]\W $(__git_ps1 "(%s)") $ \[\033[00m\]'
+else
+# if not, a regular prompt
+export PS1='\[\033[01;32m\]\u\[\033[01;00m\]@\[\033[01;31m\]\h \[\033[37m\]\W $ \[\033[00m\]'
+fi
 
 # and other stuff
 # (osx specific)
@@ -64,7 +70,7 @@ set convert-meta off
 
 # make various commands pretty
 alias ls='ls -GhF' #colours and useful bits
-alias svn=colorsvn 
+alias svn=colorsvn
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
 
@@ -73,3 +79,12 @@ export CLICOLOR=1
 # generate a STRONG 9char pw. (will use up entropy)
 alias pwdgen='gpg --gen-random --armor 1 9'
 
+# show the date on login
+echo ""
+date
+echo ""
+
+# use less for the pager, if possible.
+if [ `which less` ]; then
+export VTYSH_PAGER="less -F"
+fi
