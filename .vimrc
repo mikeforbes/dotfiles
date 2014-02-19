@@ -1,9 +1,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mikes fucking rad .vimrc file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load the pathogen plugin
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" load the pathogen plugin, if you have it
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
 
 set cul " highlight the line with the cursor on it
 set nocompatible " get out of horrible vi-compatible mode
