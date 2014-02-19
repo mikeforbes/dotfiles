@@ -1,10 +1,16 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mikes fucking rad .vimrc file
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load the pathogen plugin, if you have it
-"call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()
+" load the pathogen plugin
+" you'll want to enable this if you have pathogen
+" (you should get pathogen) https://github.com/tpope/vim-pathogen
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
+set background=dark " we are using a dark background
+colorscheme coal
+" get the colors from https://github.com/mikeforbes/dotfiles/blob/master/coal.vim
+" put it in ~/.vim/colors/
 set cul " highlight the line with the cursor on it
 set nocompatible " get out of horrible vi-compatible mode
 set modelines=0
@@ -19,10 +25,7 @@ set viminfo+=! " make sure it can save viminfo
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set isk+=_,$,@,%,#,- " none of these should be word dividers, so make them not be
 set scrolloff=2 " Minimal number of screen lines to keep above and below the cursor. (2)
-set background=dark " we are using a dark background
 set t_Co=256 "number of terminal colours to use. (all of them)
-"colorscheme jellybeans
-colorscheme pablo
 set lsp=1 " space it out a little more (easier to read)
 set wildmenu " turn on wild menu
 set ruler " Always show current positions along the bottom
@@ -34,7 +37,7 @@ set whichwrap+=<,>,h,l  " backspace and cursor keys wrap to
 set shortmess=atI " shortens messages to avoid 'press a key' prompt
 set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise
-set nobackup " turn off file backup, because its fucking balls
+set nobackup " turn off file backup, because its balls
 set nowb " Don't write a backup file
 set noswapfile " don't write a swapfile
 set smarttab "  When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'.
@@ -47,7 +50,7 @@ set softtabstop=4 " unify
 set shiftwidth=4 " unify
 setlocal smarttab
 set expandtab
-set nonu " I don't like fucking numbers.
+set nonu " I don't like numbers.
 set nowrap " do not wrap lines
 set smarttab autoindent " use tabs at the start of a line, spaces elsewhere
 set expandtab " use the right amount of numbers to tab in insert mode
@@ -55,11 +58,10 @@ set paste " pastes properly.
 set ignorecase smartcase
 set showmatch
 set ttyfast         " smoother changes
-syntax on
 syntax enable
 set hlsearch
 set incsearch
-" I keep typing :Q! instead of :q! and it's fucking annoying
+" I keep typing :Q! instead of :q! and it's annoying
 " this fixes it ;)
 command -bang -bar Q :q<bang>
 " global, forces all comments to look the same in my colour schemes.
@@ -96,16 +98,28 @@ function! VisualSearch(direction) range
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction
-"Basically you press * or # to search for the current selection !! Really useful
 vnoremap <silent> * :call VisualSearch('f')<CR>
 vnoremap <silent> # :call VisualSearch('b')<CR>
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 """"""
 " end search thing
 """"""
-"The following line sets the smartindent mode for *.py files.
-"It means that after typing lines which start with any of the keywords in the list (ie. def, class, if, etc)
-"the next line will automatically indent itself to the next level of indentation:
+" The following line sets the smartindent mode for *.py files.
+" It means that after typing lines which start with any of the keywords in the list (ie. def, class, if, etc)
+" the next line will automatically indent itself to the next level of indentation:
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd BufWritePre * :%s/\s\+$//e
 au FileType py set textwidth=79 " PEP-8 Friendly
+
+" tab complettion specifics. (^p)
+imap <Tab> <C-P>
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+set completeopt=menu,preview
+nnoremap R "_d
+"map CTRL-j and CTRL-k to next and previous buffer
+" and CTRL-l and CTRL-h to next and previous tabs.
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+map <C-L> :tabn<CR>
+map <C-H> :tabp<CR
