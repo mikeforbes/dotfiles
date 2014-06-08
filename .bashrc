@@ -79,11 +79,6 @@ export CLICOLOR=1
 # generate a STRONG 9char pw. (will use up entropy)
 alias pwdgen='gpg --gen-random --armor 1 9'
 
-# show the date on login
-echo ""
-date
-echo ""
-
 # use less for the pager, if possible.
 if [ `which less` ]; then
 export VTYSH_PAGER="less -F"
