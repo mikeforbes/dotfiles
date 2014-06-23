@@ -6,12 +6,15 @@
 " (you should get pathogen) https://github.com/tpope/vim-pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-
+" highlight anything past 80 columns wide (requires at least vim 7.3)
+execute "set colorcolumn=" . join(range(81,335), ',')
 set background=dark " we are using a dark background
+
 colorscheme coal
 " get the colors from https://github.com/mikeforbes/dotfiles/blob/master/coal.vim
 " put it in ~/.vim/colors/
-set cul " highlight the line with the cursor on it
+
+" set cul " highlight the line with the cursor on it (decided I didn't like this)
 set nocompatible " get out of horrible vi-compatible mode
 set modelines=0
 filetype on " detect the type of file
