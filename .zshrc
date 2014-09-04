@@ -16,9 +16,15 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 plugins=(zsh-syntax-highlighting git tmux brew osx python screen compleat)
 # source ohmyzsh stuff
 source $ZSH/oh-my-zsh.sh
+
+# if any command takes longer than 5sec to run, zsh will print the usage stats
+# along with time taken.
+REPORTTIME=5
+
 # load some colour!
 autoload -U colors
 colors
+
 # make various commands pretty
 alias svn=colorsvn
 export CLICOLOR=1
@@ -128,6 +134,8 @@ alias git pull='git pull --rebase'
 alias fucking='sudo'
 alias unfuck='git reset --soft "HEAD^"'
 alias sc='tmux attach'
+alias myip='echo "Your public IP address is:" `curl -s icanhazip.com`'
+
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
