@@ -1,8 +1,9 @@
 " load pathogen first
 execute pathogen#infect()
-" Airline; use powerline-style glyphs and colors
+" set airline theme
+let g:airline_theme = 'powerlineish'
+" use powerline fonts
 let g:airline_powerline_fonts = 1
-let g:airline_theme='powerlineish'
 " shade the window a different colour when wider than 80col
 execute "set colorcolumn=" . join(range(81,335), ',')
 
@@ -16,9 +17,12 @@ set undodir=~/.vim/undo         " persistent undo storage
 set undofile                    " persistent undo on
 
 set background=dark " we are using a dark background
-" set colour scheme, get it from my dotfiles repo
-colorscheme Tomorrow-Night
-" decided I didn't like this but keeping it anyway
+
+"colorscheme Tomorrow-Night
+colorscheme hybrid
+
+" get the colours from my dotfiles
+" put it in ~/.vim/colors/
 "set cul " highlight the line with the cursor on it
 set nocompatible " get out of horrible vi-compatible mode
 set modelines=0
@@ -55,7 +59,7 @@ set softtabstop=4 " unify
 set shiftwidth=4 " unify
 setlocal smarttab
 set expandtab
-set nonu " I don't like line numbers.
+set nonu " I don't like numbers.
 set nowrap " do not wrap lines
 set smarttab autoindent " use tabs at the start of a line, spaces elsewhere
 set expandtab " use the right amount of numbers to tab in insert mode
