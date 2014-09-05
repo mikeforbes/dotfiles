@@ -5,22 +5,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='powerlineish'
 " shade the window a different colour when wider than 80col
 execute "set colorcolumn=" . join(range(81,335), ',')
-" set xterm title, and inform vim of screen/tmux's syntax for doing the same
-set titlestring=vim\ %{expand(\"%t\")}
-if &term =~ "^screen"
-    " pretend this is xterm.  it probably is anyway, but if term is left as
-    " `screen`, vim doesn't understand ctrl-arrow.
-    if &term == "screen-256color"
-        set term=xterm-256color
-    else
-        set term=xterm
-    endif
-
-    " gotta set these *last*, since `set term` resets everything
-    set t_ts=k
-    set t_fs=\
-endif
-set title
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
