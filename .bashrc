@@ -29,7 +29,8 @@ shopt -s cmdhist # attempt to save all lines of a multiple-line command in the s
 shopt -s histappend histreedit histverify # various history things
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# FUCK NO
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
