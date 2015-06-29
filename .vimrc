@@ -2,13 +2,17 @@
 execute pathogen#infect()
 " and the pathogen help stuff
 call pathogen#helptags()
+" pathogen (https://github.com/tpope/vim-pathogen)
+" will load various plugins in ~/.vim/bundle/
+" I've included the ones I use in my github dotfiles repo
+
 
 " set airline theme
 let g:airline_theme = 'powerlineish'
 " use powerline fonts
 let g:airline_powerline_fonts = 1
 " shade the window a different colour when wider than 80col
-"execute "set colorcolumn=" . join(range(81,335), ',')
+execute "set colorcolumn=" . join(range(81,335), ',')
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
