@@ -1,11 +1,14 @@
 " load pathogen first
 execute pathogen#infect()
+" and the pathogen help stuff
+call pathogen#helptags()
+
 " set airline theme
 let g:airline_theme = 'powerlineish'
 " use powerline fonts
 let g:airline_powerline_fonts = 1
 " shade the window a different colour when wider than 80col
-execute "set colorcolumn=" . join(range(81,335), ',')
+"execute "set colorcolumn=" . join(range(81,335), ',')
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -29,6 +32,7 @@ set modelines=0
 filetype on " detect the type of file
 filetype plugin indent on " load filetype plugins
 syntax on
+
 set history=10000 " How many lines of history to remember
 set cf " enable error files and error jumping
 set clipboard+=unnamed " turns out I do like clipboard
@@ -54,9 +58,14 @@ set laststatus=2 " always show the status line
 set ai " autoindent
 set nosmartindent " it's balls.
 set cindent " do c-style indenting
-set tabstop=4 " tab spacing (settings below are just to unify it)
-set softtabstop=4 " unify
-set shiftwidth=4 " unify
+
+if has("autocmd")
+  " Enable file type detection
+  filetype on
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+endif
+
+
 setlocal smarttab
 set expandtab
 set nonu " I don't like numbers.
