@@ -25,12 +25,9 @@ set undofile                    " persistent undo on
 
 set background=dark " we are using a dark background
 
-"colorscheme Tomorrow-Night
 colorscheme hybrid
-
 " get the colours from my dotfiles
 " put it in ~/.vim/colors/
-"set cul " highlight the line with the cursor on it
 set nocompatible " get out of horrible vi-compatible mode
 set modelines=0
 filetype on " detect the type of file
