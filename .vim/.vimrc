@@ -3,16 +3,23 @@ execute pathogen#infect()
 " and the pathogen help stuff
 call pathogen#helptags()
 " pathogen (https://github.com/tpope/vim-pathogen)
-" will load various plugins in ~/.vim/bundle/
+" will load all plugins in ~/.vim/bundle/
 " I've included the ones I use in my github dotfiles repo
 
 
+" these are specific to the vim-airline plugin:
 " set airline theme
 let g:airline_theme = 'powerlineish'
 " use powerline fonts
 let g:airline_powerline_fonts = 1
+
+
 " shade the window a different colour when wider than 80col
-execute "set colorcolumn=" . join(range(81,335), ',')
+execute "set colorcolumn=" . join(range(81,82), ',')
+" and now make it a suitable colour
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -25,9 +32,13 @@ set undofile                    " persistent undo on
 
 set background=dark " we are using a dark background
 
-colorscheme hybrid
+"colorscheme Tomorrow-Night
+colorscheme janah
+"colorscheme anderson
+
 " get the colours from my dotfiles
 " put it in ~/.vim/colors/
+"set cul " highlight the line with the cursor on it
 set nocompatible " get out of horrible vi-compatible mode
 set modelines=0
 filetype on " detect the type of file
