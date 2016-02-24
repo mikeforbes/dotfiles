@@ -7,6 +7,8 @@ ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 ZSH_THEME="mike"
 # you'll find the theme at: https://github.com/mikeforbes/dotfiles/blob/master/mike.zsh-theme
+# put it in ~/.oh-my-zsh/themes/
+
 # we want oh-my-zsh to update, so:
 export DISABLE_AUTO_UPDATE="false"
 # Use case-sensitive completion
