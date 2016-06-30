@@ -8,13 +8,14 @@
 :GitGutterNextHunk	gitgutter.txt	/*:GitGutterNextHunk*
 :GitGutterPrevHunk	gitgutter.txt	/*:GitGutterPrevHunk*
 :GitGutterPreviewHunk	gitgutter.txt	/*:GitGutterPreviewHunk*
-:GitGutterRevertHunk	gitgutter.txt	/*:GitGutterRevertHunk*
 :GitGutterSignsDisable	gitgutter.txt	/*:GitGutterSignsDisable*
 :GitGutterSignsEnable	gitgutter.txt	/*:GitGutterSignsEnable*
 :GitGutterSignsToggle	gitgutter.txt	/*:GitGutterSignsToggle*
 :GitGutterStageHunk	gitgutter.txt	/*:GitGutterStageHunk*
 :GitGutterToggle	gitgutter.txt	/*:GitGutterToggle*
+:GitGutterUndoHunk	gitgutter.txt	/*:GitGutterUndoHunk*
 GitGutter	gitgutter.txt	/*GitGutter*
+GitGutterAutocmd	gitgutter.txt	/*GitGutterAutocmd*
 GitGutterCommands	gitgutter.txt	/*GitGutterCommands*
 GitGutterContents	gitgutter.txt	/*GitGutterContents*
 GitGutterCustomisation	gitgutter.txt	/*GitGutterCustomisation*

@@ -14,15 +14,15 @@ There are a few ways you can go about installing this plugin:
 
 1.  If you have [Vundle](https://github.com/gmarik/Vundle.vim) you can simply add:
     ```
-    Bundle 'ntpeters/vim-better-whitespace'
+    Plugin 'ntpeters/vim-better-whitespace'
     ```
     to your `.vimrc` file then run:
     ```
-    :BundleInstall
+    :PluginInstall
     ```
 2.  If you are using [Pathogen](https://github.com/tpope/vim-pathogen), you can just run the following command:
     ```
-    git clone git://github.com/ntpeters/vim-better-whitespace.git ~/.vim/bundle/
+    git clone git://github.com/ntpeters/vim-better-whitespace.git ~/.vim/bundle/vim-better-whitespace
     ```
 3.  While this plugin can also be installed by copying its contents into your `~/.vim/` directory, I would highly recommend using one of the above methods as they make managing your Vim plugins painless.
 
@@ -72,6 +72,15 @@ Whitespace highlighting is enabled by default, with a highlight color of red.
     :ToggleStripWhitespaceOnSave
     ```
     This will strip all trailing whitespace everytime you save the file for all file types.
+
+    *  If you want this behaviour by default for all filetypes, add the following to your `~/.vimrc`:
+
+        ```
+        autocmd BufWritePre * StripWhitespace
+        ```
+
+        For exceptions of all see ```g:better_whitespace_filetypes_blacklist```.
+
     *  If you would prefer to only stip whitespace for certain filetypes, add
         the following to your `~/.vimrc`:
 
@@ -87,6 +96,22 @@ Whitespace highlighting is enabled by default, with a highlight color of red.
 *  To disable this plugin for specific file types, add the following to your `~/.vimrc`:
     ```
     let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>']
+    ```
+    This replaces the filetypes from the default list of blacklisted filetypes. The
+    default types that are blacklisted are:
+    ```
+    ['diff', 'gitcommit', 'unite', 'qf', 'help']
+    ```
+    If you do not want any of these filetypes unignored, simply include them in the
+    blacklist:
+    ```
+    let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>',
+                                            'diff', 'gitcommit', 'unite', 'qf', 'help']
+    ```
+
+*  To enable verbose output for each command, set verbosity in your `.vimrc`:
+    ```
+    let g:better_whitespace_verbosity=1
     ```
 
 ##Screenshots
