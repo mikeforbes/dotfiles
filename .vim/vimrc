@@ -1,15 +1,13 @@
 " Mike's .vimrc. uses vundle so get that first.
+" do vundle settings first
 set nocompatible              " required for vundle
 filetype off                  " required for vundle
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
-" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" vundle plugins:
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ntpeters/vim-better-whitespace'
@@ -17,8 +15,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'ervandew/supertab'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'beigebrucewayne/Turtles' " I like turtles
+Plugin 'junegunn/goyo.vim'
 
-" All of your Plugins must be added before the following line
+" All plugins must be added before the following line
 " (this is the end, my only friend. the end.)
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -33,7 +34,6 @@ let g:airline_powerline_fonts = 1
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -45,7 +45,7 @@ autocmd BufRead,BufNewFile *.yml set ft=ansible
 autocmd BufRead,BufNewFile *.j2 set ft=ansible
 autocmd BufRead,BufNewFile *.yaml set ft=ansible
 
-" shade the window a different colour when wider than 80col
+" shade the window a different colour when wider than 80col.. should be here ->
 execute "set colorcolumn=" . join(range(81,82), ',')
 " and now make it a suitable colour, not BRIGHT RED
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -58,13 +58,13 @@ set nobackup                    " backups are annoying
 set writebackup                 " temp backup during write
 set undodir=~/.vim/undo         " persistent undo storage
 set undofile                    " persistent undo on
-
+" theming specifc.
 set background=dark " we are using a dark background
 
-colorscheme janah " get this from my dotfiles
-set modelines=0
-syntax on
+" set the colour scheme!
+colorscheme turtles " from the vundle above
 
+syntax on " yes we want syntax
 set history=10000 " How many lines of history to remember
 set cf " enable error files and error jumping
 set clipboard+=unnamed " turns out I do like clipboard
@@ -90,8 +90,7 @@ set laststatus=2 " always show the status line
 set ai " autoindent
 set nosmartindent " it's balls.
 set cindent " do c-style indenting
-
-setlocal smarttab
+setlocal smarttab " tab according to shiftwidth
 set expandtab
 set nonu " I don't like numbers. we can see them with our statusbar anyway
 set nowrap " do not wrap lines
@@ -102,9 +101,11 @@ set showmatch
 set ttyfast         " smoother changes
 set hlsearch
 set incsearch
+
 " I keep typing :Q! instead of :q! and it's annoying
 " this fixes it ;)
 command -bang -bar Q :q<bang>
+
 " global, forces all comments to look the same in my colour schemes.
 set comments+=b:\"
 set comments+=n::
