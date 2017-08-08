@@ -1,2 +1,17 @@
 ../.netrwhist
 .netrwhist
+/vim/.vim/bundle/*
+!/vim/.vim/bundle/Vundle.vim
+
+bundle/Dockerfile.vim/
+bundle/Turtles/
+bundle/vim-airline/autoload/airline/extensions/ale.vim
+bundle/vim-airline/autoload/airline/extensions/denite.vim
+bundle/vim-airline/autoload/airline/extensions/neomake.vim
+bundle/vim-airline/autoload/airline/extensions/vimagit.vim
+bundle/vim-airline/autoload/airline/extensions/vimtex.vim
+bundle/vim-airline/autoload/airline/extensions/xkblayout.vim
+bundle/vim-gitgutter/LICENCE
+bundle/vim-gitgutter/test/runner.vim
+bundle/vim-gitgutter/test/test_gitgutter.vim
+bundle/goyo.vim/
