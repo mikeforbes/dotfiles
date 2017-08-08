@@ -18,7 +18,7 @@ COMPLETION_WAITING_DOTS="true"
 # zsh-completion path shiz
 fpath=(/usr/local/share/zsh-completions $fpath)
 # use these oh-my-zsh plugins:
-plugins=(colorize zsh-syntax-highlighting git tmux brew osx python screen compleat autojump)
+plugins=(sudo docker colorize zsh-syntax-highlighting git tmux brew osx python screen compleat autojump)
 # source ohmyzsh stuff
 source $ZSH/oh-my-zsh.sh
 # if any command takes longer than 5sec to run, zsh will print the usage stats
@@ -75,10 +75,6 @@ export GPGKEY=YOURKEYID
 # your lang here:
 #export LANG=en_NZ.UTF-8
 
-# other exporty things
-# Tell grep to highlight matches
-export GREP_OPTIONS='--color=always'
-
 # make various commands pretty
 alias svn=colorsvn
 export CLICOLOR=1
@@ -117,8 +113,6 @@ fi
 if [ -f `brew --prefix`/etc/autojump.zsh ]; then
   . `brew --prefix`/etc/autojump.zsh
 fi
-# android dev stuff, osx:
-export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # osx specific
 if [[ "$(uname -s)" == 'Darwin' ]]; then
@@ -132,6 +126,11 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
   alias lebrew="brew update;brew outdated;brew upgrade --all;brew cleanup"
   # locate isn't available (by default) on OSX, so use mdfind
   alias locate='mdfind -name'
+  # Don't send analytics to homebrew
+  export HOMEBREW_NO_ANALYTICS=1
+  # don't allow homebrew to download shit over insecure means
+  export HOMEBREW_NO_INSECURE_REDIRECT=1
+  export HOMEBREW_CASK_OPTS=--require-sha
 fi
 
 # use less for the pager, if possible.
@@ -151,8 +150,8 @@ alias fuckthis='git reset --hard;git clean -f -d'
 alias sc='tmux attach'
 # grab your ip address
 alias myip='echo "Your public IP address is:" `curl -s icanhazip.com`'
-# always start tmux in 256 colour mode
-alias tmux='tmux -2'
+# always start tmux in 256 colour mode and UTF-8`
+alias tmux='tmux -2u'
 # because I always fucking forget
 alias fucking='sudo'
 # I deal with lots of zone edits. This grabs the current date in a way that makes it easier for a serial
