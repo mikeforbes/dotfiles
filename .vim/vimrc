@@ -15,7 +15,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'ervandew/supertab'
-Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'docker/docker'
+Plugin 'scrooloose/nerdtree'
 Plugin 'beigebrucewayne/Turtles' " I like turtles
 Plugin 'junegunn/goyo.vim'
 
