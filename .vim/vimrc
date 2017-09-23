@@ -25,6 +25,9 @@ Plugin 'junegunn/goyo.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" set the colour scheme!
+colorscheme turtles " from the vundle above
+
 " specific to the vim-airline plugin:
 " set airline theme
 let g:airline_theme = 'powerlineish'
@@ -61,9 +64,6 @@ set undodir=~/.vim/undo         " persistent undo storage
 set undofile                    " persistent undo on
 " theming specifc.
 set background=dark " we are using a dark background
-
-" set the colour scheme!
-colorscheme turtles " from the vundle above
 
 syntax on " yes we want syntax
 set history=10000 " How many lines of history to remember
