@@ -14,25 +14,22 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/syntastic'
 Plugin 'pearofducks/ansible-vim'
-Plugin 'ervandew/supertab'
-Plugin 'docker/docker'
-Plugin 'scrooloose/nerdtree'
-Plugin 'beigebrucewayne/Turtles' " I like turtles
 Plugin 'junegunn/goyo.vim'
+Plugin 'scrooloose/nerdtree'
 
 " All plugins must be added before the following line
 " (this is the end, my only friend. the end.)
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" set the colour scheme!
-colorscheme turtles " from the vundle above
-
 " specific to the vim-airline plugin:
 " set airline theme
 let g:airline_theme = 'powerlineish'
 " use powerline fonts if we can
 let g:airline_powerline_fonts = 1
+
+" set the colour scheme!
+colorscheme skeletor " get this from my dotfiles
 
 " syntastic settings;
 set statusline+=%#warningmsg#
@@ -59,7 +56,7 @@ set backspace=indent,eol,start
 
 " deal with backups and other junky files
 set nobackup                    " backups are annoying
-set writebackup                 " temp backup during write
+set nowritebackup                 " temp backup during write
 set undodir=~/.vim/undo         " persistent undo storage
 set undofile                    " persistent undo on
 " theming specifc.
