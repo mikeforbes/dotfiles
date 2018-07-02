@@ -47,9 +47,9 @@ autocmd BufRead,BufNewFile *.j2 set ft=ansible
 autocmd BufRead,BufNewFile *.yaml set ft=ansible
 
 " shade the window a different colour when wider than 80col.. should be here ->
-execute "set colorcolumn=" . join(range(81,82), ',')
+set colorcolumn=80
 " and now make it a suitable colour, not BRIGHT RED
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+highlight ColorColumn ctermbg=235
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
