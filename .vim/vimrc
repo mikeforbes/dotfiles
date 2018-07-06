@@ -1,5 +1,6 @@
 " Mike's .vimrc. uses vundle so get that first.
-" do vundle settings first
+" You'll find vundle at https://github.com/VundleVim/Vundle.vim
+" vundle settings first
 set nocompatible              " required for vundle
 filetype off                  " required for vundle
 " set the runtime path to include Vundle and initialize
@@ -8,14 +9,13 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 " vundle plugins:
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'scrooloose/nerdtree'
+Plugin 'vim-airline/vim-airline' " status/tabline
+Plugin 'vim-airline/vim-airline-themes' " themes for above
+Plugin 'ntpeters/vim-better-whitespace' " highlights all trailing whitespace characters
+Plugin 'airblade/vim-gitgutter' " shows a git diff in the gutter for changes to git tracked files
+Plugin 'scrooloose/syntastic' " better syntax checking
+Plugin 'junegunn/goyo.vim' " distraction free vim!
+Plugin 'scrooloose/nerdtree' " tree explorer for vim
 
 " All plugins must be added before the following line
 " (this is the end, my only friend. the end.)
@@ -56,47 +56,47 @@ set backspace=indent,eol,start
 
 " deal with backups and other junky files
 set nobackup                    " backups are annoying
-set nowritebackup                 " temp backup during write
+set nowritebackup               " temp backup during write
 set undodir=~/.vim/undo         " persistent undo storage
 set undofile                    " persistent undo on
 " theming specifc.
-set background=dark " we are using a dark background
+set background=dark             " we are using a dark background
 
-syntax on " yes we want syntax
-set history=10000 " How many lines of history to remember
-set cf " enable error files and error jumping
-set clipboard+=unnamed " turns out I do like clipboard
-set ffs=unix,dos,mac " support all three, in this order
-set viminfo+=! " make sure it can save viminfo
+syntax on                       " yes we want syntax
+set history=10000               " How many lines of history to remember
+set cf                          " enable error files and error jumping
+set clipboard+=unnamed          " turns out I do like clipboard
+set ffs=unix,dos,mac            " support all three, in this order
+set viminfo+=!                  " make sure it can save viminfo
 set viminfo='10,\"100,:20,%,n~/.viminfo
-set isk+=_,$,@,%,#,- " none of these should be word dividers
-set scrolloff=2 " Minimal number of screen lines to keep above and below.
-set t_Co=256 "number of terminal colours to use. (all of them)
-set lsp=1 " space it out a little more (easier to read)
-set wildmenu " turn on wild menu
-set ruler " Always show current positions along the bottom
-set cmdheight=1 " the command bar is 1 high
-set lz " do not redraw while running macros (much faster) (LazyRedraw)
-set hid " you can change buffer without saving
-set whichwrap+=<,>,h,l  " backspace and cursor keys wrap to
-set shortmess=atI " shortens messages to avoid 'press a key' prompt
-set report=0 " tell us when anything is changed via :...
-set noerrorbells " don't make noise
-set noswapfile " don't write a swapfile
-set smarttab "  When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'.
-set laststatus=2 " always show the status line
-set ai " autoindent
-set nosmartindent " it's balls.
-set cindent " do c-style indenting
-setlocal smarttab " tab according to shiftwidth
+set isk+=_,$,@,%,#,-            " none of these should be word dividers
+set scrolloff=2                 " Minimal number of screen lines to keep above and below.
+set t_Co=256                    "number of terminal colours to use. (all of them)
+set lsp=1                       " space it out a little more (easier to read)
+set wildmenu                    " turn on wild menu
+set ruler                       " Always show current positions along the bottom
+set cmdheight=1                 " the command bar is 1 high
+set lz                          " do not redraw while running macros (much faster) (LazyRedraw)
+set hid                         " you can change buffer without saving
+set whichwrap+=<,>,h,l          " backspace and cursor keys wrap to
+set shortmess=atI               " shortens messages to avoid 'press a key' prompt
+set report=0                    " tell us when anything is changed via :...
+set noerrorbells                " don't make noise
+set noswapfile                  " don't write a swapfile
+set smarttab                    "  When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'.
+set laststatus=2                " always show the status line
+set ai                          " autoindent
+set nosmartindent               " it's balls.
+set cindent                     " do c-style indenting
+setlocal smarttab               " tab according to shiftwidth
 set expandtab
-set nonu " I don't like numbers. we can see them with our statusbar anyway
-set nowrap " do not wrap lines
-set smarttab autoindent " use tabs at the start of a line, spaces elsewhere
-set expandtab " use the right amount of numbers to tab in insert mode
+set nonu                        " I don't like numbers. we can see them with our statusbar anyway
+set nowrap                      " do not wrap lines
+set smarttab autoindent         " use tabs at the start of a line, spaces elsewhere
+set expandtab                   " use the right amount of numbers to tab in insert mode
 set ignorecase smartcase
 set showmatch
-set ttyfast         " smoother changes
+set ttyfast                     " smoother changes
 set hlsearch
 set incsearch
 
