@@ -3,7 +3,7 @@
 #
 # Lots of Mac OSX specific stuff, but should be OK in other environments.
 
-export EDITOR=/usr/bin/vim # because fuck anything else that's why.
+export EDITOR=/usr/bin/vim # because
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -27,10 +27,6 @@ shopt -s checkhash # check a command exists before executing it
 shopt -s no_empty_cmd_completion # do not search for possible completions when completion is attempted on an empty line.
 shopt -s cmdhist # attempt to save all lines of a multiple-line command in the same history entry.
 shopt -s histappend histreedit histverify # various history things
-
-# make less more friendly for non-text input files, see lesspipe(1)
-# FUCK NO
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -71,11 +67,8 @@ set convert-meta off
 
 # make various commands pretty
 alias ls='ls -GhF' #colours and useful bits
-alias svn=colorsvn
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
-
-# other aliases
 
 # generate a STRONG 9char pw. (will use up entropy)
 alias pwdgen='gpg --gen-random --armor 1 9'
