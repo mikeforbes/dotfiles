@@ -1,24 +1,13 @@
-" do vundle settings first
-set nocompatible              " required for vundle
-filetype off                  " required for vundle
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" vundle plugins:
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/syntastic'
-Plugin 'dracula/vim'
-Plugin 'ntpeters/vim-better-whitespace'
-
-
-" All plugins must be added before the following line
-" (this is the end, my only friend. the end.)
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Use vim-plug
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
+Plug 'dracula/vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/goyo.vim'
+call plug#end()
 
 " specific to the vim-airline plugin:
 " set airline theme
