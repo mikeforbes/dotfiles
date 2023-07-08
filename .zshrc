@@ -1,7 +1,8 @@
 # mike's .zshrc
 # I use the prezto framework to config Zsh
 # Get it here: https://github.com/sorin-ionescu/prezto
-
+# prezto settings are in the ~/.zpreztorc
+#
 
 # Set up the prompt
 autoload -Uz promptinit
@@ -36,12 +37,6 @@ HISTFILE=~/.zsh_history
 
 # editor is vim
 export EDITOR=/usr/bin/vim # because
-# git settings
-export GIT_AUTHOR_NAME='Your Name'
-export GIT_AUTHOR_EMAIL=you@yourdomain.com
-export GIT_COMMITTER_NAME='Your Name'
-export GIT_COMMITTER_EMAIL=you@yourdomain.com
-export GPGKEY=YOURKEYID
 
 #  aliases
 # copy paste like mac os pbcopy pbpaste
@@ -74,26 +69,39 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # now source the zprezto init
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
+# colour things with grc, if it exists
+# zpreztos git module includes an alias for grc, this will nuke that
+if [ -f /etc/grc.zsh ]; then
+     unalias grc;source /etc/grc.zsh
+fi
+
 #
 # aliases
 #
 # generate a STRONG 16char pw.
-# assumes you have 'gpg'
-alias pwdgen='gpg --gen-random --armor 1 11'
-
-# copy paste like mac os pbcopy pbpaste
-# install xsel!
-if [ -f /usr/bin/xsel ]; then
-    alias pbcopy='xsel --clipboard --input'
-    alias pbpaste='xsel --clipboard --output'
+# assumes you have 'gpg' in /usr/bin
+if [ -f /usr/bin/gpg ]; then
+    alias pwdgen='gpg --gen-random --armor 1 11|cut -d"=" -f1'
 fi
 
 # git helping aliases:
-alias superpush='git pull && git push' # useful for git
-alias gpl='git fetch --all;git merge origin'
+# note: I use the zprezto git module, it includes some aliases too
+#
+if [ -f /usr/bin/git ]; then
+    alias superpush='git pull && git push' # useful for git
+    alias gpl='git fetch --all;git merge origin'
 # undo:
-alias unfuck='git reset --soft "HEAD^"'
+    alias unfuck='git reset --soft "HEAD^"'
 # (╯°□°）╯︵ ┻━┻
-alias fuckthis='git reset --hard;git clean -f -d'
+    alias fuckthis='git reset --hard;git clean -f -d'
 # show me all commits on all branches in a compact, colorized way.
-alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+    alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+fi
+
+# gpg tty
+if [ -f /usr/bin/gpg ]; then
+    export GPG_TTY=\$(tty)
+fi
+# ensure our path includes .local for python pip
+export PATH="$PATH:~/.local/bin"
+
