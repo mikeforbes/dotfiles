@@ -73,7 +73,7 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # zpreztos git module includes an alias for grc, this will nuke that
 # or not, if it is not set.
 if [ -f /etc/grc.zsh ]; then
-    if whence -w grc | grep 'alias'; then
+    if whence -w grc | grep 'alias'&> /dev/null; then
         unalias grc
     fi
     source /etc/grc.zsh;unalias ls;alias ls='ls --color=always'
