@@ -71,8 +71,13 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # colour things with grc, if it exists
 # zpreztos git module includes an alias for grc, this will nuke that
+# or not, if it is not set.
 if [ -f /etc/grc.zsh ]; then
-     unalias grc;source /etc/grc.zsh
+    if whence -w grc | grep 'alias'; then
+        unalias grc
+    fi
+    source /etc/grc.zsh;unalias ls;alias ls='ls --color=always'
+    # above shenanigans because grc fucks with ls
 fi
 
 #
