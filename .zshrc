@@ -1,8 +1,7 @@
 # mike's .zshrc
 # I use the prezto framework to config Zsh
 # Get it here: https://github.com/sorin-ionescu/prezto
-# prezto settings are in the ~/.zpreztorc
-#
+# zprezto settings are in the ~/.zpreztorc
 
 # Set up the prompt
 autoload -Uz promptinit
@@ -30,13 +29,10 @@ COMPLETION_WAITING_DOTS="true"
 # along with time taken.
 REPORTTIME=5
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh
-HISTSIZE=1000
-SAVEHIST=1000
+# Keep 100000 lines of history within the shell and save it to ~/.zsh
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.zsh_history
-
-# editor is vim
-export EDITOR=/usr/bin/vim # because
 
 #  aliases
 # copy paste like mac os pbcopy pbpaste
@@ -71,13 +67,8 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # colour things with grc, if it exists
 # zpreztos git module includes an alias for grc, this will nuke that
-# or not, if it is not set.
 if [ -f /etc/grc.zsh ]; then
-    if whence -w grc | grep 'alias'&> /dev/null; then
-        unalias grc
-    fi
-    source /etc/grc.zsh;unalias ls;alias ls='ls --color=always'
-    # above shenanigans because grc fucks with ls
+    unalias grc;source /etc/grc.zsh
 fi
 
 #
@@ -90,10 +81,9 @@ if [ -f /usr/bin/gpg ]; then
 fi
 
 # git helping aliases:
-# note: I use the zprezto git module, it includes some aliases too
+# I use the zprezto git module, it includes some aliases too
 #
 if [ -f /usr/bin/git ]; then
-    alias superpush='git pull && git push' # useful for git
     alias gpl='git fetch --all;git merge origin'
 # undo:
     alias unfuck='git reset --soft "HEAD^"'
@@ -103,10 +93,36 @@ if [ -f /usr/bin/git ]; then
     alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 fi
 
+# unfuck cal. I was used to it showing a highlight on the current day
+# Due to this clusterfuck: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=980489#10
+# it doesn't anymore.
+# why did they do this?
+# TL;DR: frothing over The Right Way To Do Things.
+alias cal="ncal -b"
+# moving on
+
+# i've been using exa recently, it's got a few things I prefer
+# so..  exa > ls
+alias ls="exa --color=always"
+
+# bat > cat
+# yeah no question
+alias cat="batcat"
+
+# less is more
+# is more less
+alias more="less"
 # gpg tty
+#
 if [ -f /usr/bin/gpg ]; then
     export GPG_TTY=\$(tty)
 fi
+
+# editor & visual is vim
+export EDITOR='/usr/bin/vim'
+export VISUAL='/usr/bin/vim'
+# we are in Aotearoa, so make sure we can use our reo āe
+export LANG='en_NZ.UTF-8'
+
 # ensure our path includes .local for python pip
 export PATH="$PATH:~/.local/bin"
-
