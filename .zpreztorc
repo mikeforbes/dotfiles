@@ -11,7 +11,6 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'syntax-highlighting' \
   'autosuggestions' \
-  'gpg' \
   'dpkg' \
   'history' \
   'directory' \
@@ -36,7 +35,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 
 # disable 'safe' operations, so rm, mv, cp all work without interaction now
 # enable at your own peril?
-# zstyle ':prezto:module:utility' safe-ops 'no'
+zstyle ':prezto:module:utility' safe-ops 'no'
 
 # Prompt
 #
