@@ -29,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # along with time taken.
 REPORTTIME=5
 
-# Keep 100000 lines of history within the shell and save it to ~/.zsh
+# Keep 1000 lines of history within the shell and save it to ~/.zsh
 HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
@@ -81,9 +81,10 @@ if [ -f /usr/bin/gpg ]; then
 fi
 
 # git helping aliases:
-# I use the zprezto git module, it includes some aliases too
+# note: I use the zprezto git module, it includes some aliases too
 #
 if [ -f /usr/bin/git ]; then
+    alias superpush='git pull && git push' # useful for git
     alias gpl='git fetch --all;git merge origin'
 # undo:
     alias unfuck='git reset --soft "HEAD^"'
@@ -93,36 +94,18 @@ if [ -f /usr/bin/git ]; then
     alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 fi
 
-# unfuck cal. I was used to it showing a highlight on the current day
-# Due to this clusterfuck: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=980489#10
-# it doesn't anymore.
-# why did they do this?
-# TL;DR: frothing over The Right Way To Do Things.
-alias cal="ncal -b"
-# moving on
-
-# i've been using exa recently, it's got a few things I prefer
-# so..  exa > ls
-alias ls="exa --color=always"
-
-# bat > cat
-# yeah no question
-alias cat="batcat"
-
 # less is more
-# is more less
-alias more="less"
-# gpg tty
-#
-if [ -f /usr/bin/gpg ]; then
-    export GPG_TTY=\$(tty)
+if [ -f /usr/bin/less ];then
+    alias more="less"
 fi
-
+# unfuck the systemd status pager/settings
+SYSTEMD_LESS="FRXMK"
+SYSTEMD_COLORS=true
 # editor & visual is vim
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/vim'
-# we are in Aotearoa, so make sure we can use our reo āe
+# āe
 export LANG='en_NZ.UTF-8'
-
-# ensure our path includes .local for python pip
-export PATH="$PATH:~/.local/bin"
+# fix ls
+# i like directories first
+alias ls="/usr/bin/ls --group-directories-first --color=auto"
