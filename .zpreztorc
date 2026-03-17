@@ -1,4 +1,3 @@
-# Mikes Prezto options.
 # General
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
@@ -11,13 +10,14 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'syntax-highlighting' \
   'autosuggestions' \
-  'dpkg' \
+  'dnf' \
   'history' \
   'directory' \
   'spectrum' \
   'utility' \
   'completion' \
   'history-substring-search' \
+  'tmux' \
   'prompt'
 
 # Editor
@@ -34,7 +34,6 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'root'
 
 # disable 'safe' operations, so rm, mv, cp all work without interaction now
-# enable at your own peril?
 zstyle ':prezto:module:utility' safe-ops 'no'
 
 # Prompt
