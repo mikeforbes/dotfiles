@@ -1,19 +1,18 @@
 " A heavily customised, commented and actively used .vimrc
 " Assumes a recent version of Vim (at least 7.0)
 "
-" First up, I use vim-plug: https://github.com/junegunn/vim-plug
-" which assumes things like you having git, curl, a working internet connection
+"""""""
+" First up, I use vim-plug: https://github.com/junegunn/vim-plug which assumes
+" things like you having git, curl, a working internet connection
 " (for the first time install, at least) and probably some other things.
 "
 " all of this helps streamline my setup, but you could probably exclude it
-" entirely if you don't care about colour, other extra features/plugins..
-" or my shenanigans.
+" entirely if you don't care about colour, other extra features/plugins or my shenanigans.
 " If no vim-plug setup is detected, it won't attempt to load anything.
 
-" You could uncomment the below to auto-magically install vim-plug once
-" .. if you like.
-" and below that, to also install all of the plugins and reload.
-" again, assumptions: probably a working internet connection, curl, etc
+" You could uncomment the below to auto-magically install vim-plug once if you like.
+" Keep uncommenting below that, to also install all of the plugins and reload.
+" Again, assumptions: probably a working internet connection, curl, etc
 " and being OK with pulling a file over the heckin internet and executing it
 "  ... doveryay, no proveryay. Trust but verify.
 
@@ -65,7 +64,7 @@ if filereadable($HOME."/.vim/plugged/vim-airline/plugin/airline.vim")
     " use powerline fonts if we can
     silent! let g:airline_powerline_fonts = 1
     " puts another bar type thing at the top
-    silent! let g:airline#extensions#tabline#enabled = 1
+    silent! let g:airline#extensions#tabline#enabled = 0
     " and we can customise it:
     silent! let g:airline#extensions#tabline#left_sep = ' '
     silent! let g:airline#extensions#tabline#right_sep = ' '
@@ -111,7 +110,7 @@ set backspace=indent,eol,start
 
 " deal with backups and other junky files
 set nobackup                    " backups are annoying
-set nowritebackup                 " temp backup during write
+set nowritebackup               " temp backup during write
 set undodir=~/.vim/undo         " persistent undo storage
 set undofile                    " persistent undo on
 " theme specifc. dracula likes dark
@@ -188,3 +187,5 @@ set comments+=b:#
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 " more as an example, you can enforce things like textwidth per filetype, e.g
 au FileType py set textwidth=79 " PEP-8 Friendly
+" FUCK THE FUCK OFF
+set mouse-=a
