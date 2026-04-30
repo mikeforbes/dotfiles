@@ -1,111 +1,75 @@
-# mike's .zshrc
+# mike's .zshrc 🤘
 # I use the prezto framework to config Zsh
 # Get it here: https://github.com/sorin-ionescu/prezto
 # zprezto settings are in the ~/.zpreztorc
 
-# Set up the prompt
-autoload -Uz promptinit
-promptinit
+# 1. Framework Init
+# Source Prezto first so its completions and framework exist before overrides
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-# set some zsh basics:
-# Remove superfluous blanks from each command line being added to the history
-# list
+# 2. Zsh Basics
 setopt histreduceblanks
-# Remove command lines from the history list when the first character on the
-# line is a space, or when one of the expanded aliases contains a leading space
 setopt histignorespace
-# I've also seen documentation suggesting this, so we'll set it too.
-setopt HIST_IGNORE_SPACE
-
-# Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename generation
 setopt EXTENDED_GLOB
-
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
 
 # Show red dots while waiting for completion
 COMPLETION_WAITING_DOTS="true"
-# if any command takes longer than 5sec to run, zsh will print the usage stats
-# along with time taken.
 REPORTTIME=5
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh
+# History config
 HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
-#  aliases
-# copy paste like mac os pbcopy pbpaste
-# install xsel!
-if [ -f /usr/bin/xsel ]; then
+# 3. Environment & Compatibility
+export EDITOR='/usr/bin/vim'
+export VISUAL='/usr/bin/vim'
+export LANG='en_NZ.UTF-8'
+
+# Alacritty SSH terminfo fallback
+if [[ -n "$SSH_CONNECTION" && "$TERM" == "alacritty" ]]; then
+    export TERM="xterm-256color"
+fi
+
+# unfuck the systemd status pager/settings
+export SYSTEMD_LESS="FRXMK"
+export SYSTEMD_COLORS=true
+
+# 4. Aliases
+# Clipboard (X11)
+# wayland would have something like wl-(copy|paste)
+if [ -x "$(command -v xsel)" ]; then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
 fi
-# Use modern completion system
-autoload -Uz compinit
-compinit
 
-#zsh styling and completion tweaks:
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-# now source the zprezto init
-source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-# colour things with grc, if it exists
-# zpreztos git module includes an alias for grc, this will nuke that
+# GRC wrapper
+# make things colourful
 if [ -f /etc/grc.zsh ]; then
-    unalias grc;source /etc/grc.zsh
+    unalias grc 2>/dev/null
+    source /etc/grc.zsh
 fi
 
-#
-# aliases
-#
-# generate a STRONG 16char pw.
-# assumes you have 'gpg' in /usr/bin
+# GPG password gen
 if [ -f /usr/bin/gpg ]; then
-    alias pwdgen='gpg --gen-random --armor 1 11|cut -d"=" -f1'
+    alias pwdgen='gpg --gen-random --armor 1 11 | cut -d"=" -f1'
 fi
 
-# git helping aliases:
-# note: I use the zprezto git module, it includes some aliases too
-#
+# Git tooling
 if [ -f /usr/bin/git ]; then
-    alias superpush='git pull && git push' # useful for git
-    alias gpl='git fetch --all;git merge origin'
-# undo:
+    alias superpush='git pull && git push'
+    alias gpl='git fetch --all; git merge origin'
     alias unfuck='git reset --soft "HEAD^"'
-# (╯°□°）╯︵ ┻━┻
-    alias fuckthis='git reset --hard;git clean -f -d'
-# show me all commits on all branches in a compact, colorized way.
+    alias fuckthis='git reset --hard; git clean -f -d'
     alias gitlog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 fi
 
 # less is more
-if [ -f /usr/bin/less ];then
+if [ -f /usr/bin/less ]; then
     alias more="less"
 fi
-# unfuck the systemd status pager/settings
-SYSTEMD_LESS="FRXMK"
-SYSTEMD_COLORS=true
-# editor & visual is vim
-export EDITOR='/usr/bin/vim'
-export VISUAL='/usr/bin/vim'
-# āe
-export LANG='en_NZ.UTF-8'
-# fix ls
-# i like directories first
+
+# I prefer directory listing first
 alias ls="/usr/bin/ls --group-directories-first --color=auto"

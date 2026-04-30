@@ -1,27 +1,27 @@
 # General
-# Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
-  'git' \
   'environment' \
   'terminal' \
   'editor' \
-  'syntax-highlighting' \
-  'autosuggestions' \
-  'dnf' \
   'history' \
   'directory' \
   'spectrum' \
   'utility' \
   'completion' \
-  'history-substring-search' \
+  'git' \
+  'dnf' \
+  'docker' \
+  'python' \
   'tmux' \
-  'prompt'
+  'prompt' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'autosuggestions'
 
 # Editor
-# Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
 # highlighting
@@ -36,16 +36,11 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 # disable 'safe' operations, so rm, mv, cp all work without interaction now
 zstyle ':prezto:module:utility' safe-ops 'no'
 
-# Prompt
-#
-# Set the prompt theme to load.
-# Setting it to 'random' loads a random theme.
-# Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+# Prompt - trialing 'pure'
+zstyle ':prezto:module:prompt' theme 'pure'
 # Set the working directory prompt display length.
-# By default, it is set to 'short'. Set it to 'long' (without '~' expansion)
-# for longer or 'full' (with '~' expansion) for even longer prompt display.
 zstyle ':prezto:module:prompt' pwd-length 'long'
-# Set the prompt to display the return code along with an indicator for non-zero
-# return codes. This is not supported by all prompts.
-zstyle ':prezto:module:prompt' show-return-val 'yes'
+# adjust a few 'pure' colours to be better
+zstyle :prompt:pure:prompt:success color '#50fa7b'
+zstyle :prompt:pure:prompt:error color '#ff5555'
+zstyle :prompt:pure:path color '#bd93f9'
