@@ -3,13 +3,13 @@
 # Get it here: https://github.com/sorin-ionescu/prezto
 # zprezto settings are in the ~/.zpreztorc
 
-# 1. Framework Init
+# Framework Init
 # Source Prezto first so its completions and framework exist before overrides
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# 2. Zsh Basics
+# Zsh Basics
 setopt histreduceblanks
 setopt histignorespace
 setopt EXTENDED_GLOB
@@ -23,34 +23,15 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
-# 3. Environment & Compatibility
+# Environment & Compatibility
 export EDITOR='/usr/bin/vim'
 export VISUAL='/usr/bin/vim'
-export LANG='en_NZ.UTF-8'
-
-# Alacritty SSH terminfo fallback
-if [[ -n "$SSH_CONNECTION" && "$TERM" == "alacritty" ]]; then
-    export TERM="xterm-256color"
-fi
 
 # unfuck the systemd status pager/settings
 export SYSTEMD_LESS="FRXMK"
 export SYSTEMD_COLORS=true
 
-# 4. Aliases
-# Clipboard (X11)
-# wayland would have something like wl-(copy|paste)
-if [ -x "$(command -v xsel)" ]; then
-    alias pbcopy='xsel --clipboard --input'
-    alias pbpaste='xsel --clipboard --output'
-fi
-
-# GRC wrapper
-# make things colourful
-if [ -f /etc/grc.zsh ]; then
-    unalias grc 2>/dev/null
-    source /etc/grc.zsh
-fi
+# Aliases
 
 # GPG password gen
 if [ -f /usr/bin/gpg ]; then
@@ -73,3 +54,6 @@ fi
 
 # I prefer directory listing first
 alias ls="/usr/bin/ls --group-directories-first --color=auto"
+
+# Local / host-specific overrides
+[[ -r "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
