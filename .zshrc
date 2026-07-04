@@ -57,3 +57,20 @@ alias ls="/usr/bin/ls --group-directories-first --color=auto"
 
 # Local / host-specific overrides
 [[ -r "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
+
+# nvm
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+fi
+
+# --- Obsidian (Flatpak) ---
+# Ivy Bridge iGPU can't do VAAPI/Vulkan; disable GPU accel to silence
+# MESA/libva/vaInitialize errors. Software rendering is fine here.
+# Ivy Bridge iGPU: 8086:{0152,0156,015a,0162,0166,016a}
+if grep -qsx '0x8086' /sys/class/drm/card[0-9]/device/vendor &&
+   grep -qsxE '0x01(5[26a]|6[26a])' /sys/class/drm/card[0-9]/device/device; then
+    obsidian() { flatpak run md.obsidian.Obsidian --disable-gpu "$@"; }
+fi
