@@ -53,7 +53,7 @@ if [ -f /usr/bin/less ]; then
 fi
 
 # I prefer directory listing first
-alias ls="/usr/bin/ls --group-directories-first --color=auto"
+alias ls="/bin/ls --group-directories-first --color=auto"
 
 # Local / host-specific overrides
 [[ -r "${ZDOTDIR:-$HOME}/.zshrc.local" ]] && source "${ZDOTDIR:-$HOME}/.zshrc.local"
